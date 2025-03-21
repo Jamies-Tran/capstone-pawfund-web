@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -19,7 +18,6 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
     NzGridModule,
     NzButtonModule,
     NzIconModule,
-    RouterLink,
     NzFormModule,
     NzInputModule
   ],
@@ -110,7 +108,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
         <div nz-col nzSpan="6" class="tw-text-center">
           <a href="#"
             ><nz-icon
-              nzType="facebook"
+              [nzType]="'facebook'"
               class="tw-mt-[40px]"
               nzTheme="fill"
               style="font-size: 35px;"
