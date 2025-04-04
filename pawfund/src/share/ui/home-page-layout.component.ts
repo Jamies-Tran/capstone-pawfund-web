@@ -112,7 +112,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
                   <li
                     nz-menu-item
                     nzMatchRouter
-                    [routerLink]="['/homepage', 'profile']"
+                    [routerLink]="['/profile']"
                   >
                     <span nz-icon nzType="user" nzTheme="outline"></span>
                     <span class="tw-inline-block tw-ml-2">Hồ sơ</span>
