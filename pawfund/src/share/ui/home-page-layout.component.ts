@@ -8,6 +8,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { CommonApiService } from '../data-access/api/common.service';
 
 @Component({
   selector: 'app-homepage-layout',
@@ -53,11 +54,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
           </li>
 
           <!-- quản lí tài khoản -->
-          <li
-            nz-menu-item
-            nzMatchRouter
-            [routerLink]="['/account-management', 'account-list']"
-          >
+          <li nz-menu-item nzMatchRouter [routerLink]="['/staff']">
             <span nz-icon nzType="home"></span>
             <span class="tw-font-bold">Quản lý nhân viên</span>
           </li>
@@ -85,7 +82,6 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
           </li>
 
           <!-- quản lí lịch -->
-
         </ul>
       </nz-sider>
       <nz-layout>
@@ -109,11 +105,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
               ></nz-avatar>
               <nz-dropdown-menu #avatarMenu="nzDropdownMenu">
                 <ul nz-menu>
-                  <li
-                    nz-menu-item
-                    nzMatchRouter
-                    [routerLink]="['/profile']"
-                  >
+                  <li nz-menu-item nzMatchRouter [routerLink]="['/profile']">
                     <span nz-icon nzType="user" nzTheme="outline"></span>
                     <span class="tw-inline-block tw-ml-2">Hồ sơ</span>
                   </li>
@@ -173,11 +165,13 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageLayoutComponent {
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private _commonSvc: CommonApiService) {}
   isCollapsed = false;
   role = localStorage.getItem('role$');
   logout() {
-    localStorage.clear();
-    this._router.navigate(['/login']);
+    this._commonSvc.logout().subscribe((data) => {
+      localStorage.clear();
+      this._router.navigate(['/login']);
+    });
   }
 }

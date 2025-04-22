@@ -22,7 +22,7 @@ export class CommonApiService {
     }),
   };
 
-  private REST_API_SERVER = 'http://localhost:8080';
+  private REST_API_SERVER = 'https://pawfund-service-dev-37c4eb7d14d4.herokuapp.com';
 
   public autocomplete(address: string) {
     const url = `${this.REST_API_SERVER}/collection/location?input=${address}`;
@@ -31,17 +31,10 @@ export class CommonApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public getBranchName(branchName: string) {
-    const url = `${this.REST_API_SERVER}/v1/branches/branch-for-account/list?branchName=${branchName}`;
+  public logout() {
+    const url = `${this.REST_API_SERVER}/v1/api/session/logout`;
     return this._http
-      .get<BranchNameApi.Response>(url, this.httpOptions)
-      .pipe(catchError(this.handleError));
-  }
-
-  public getBranchAddress(BranchId: number) {
-    const url = `${this.REST_API_SERVER}/v1/branch/${BranchId}/branch-for-account`;
-    return this._http
-      .get<BranchAddressApi.Response>(url, this.httpOptions)
+      .put<any>(url, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

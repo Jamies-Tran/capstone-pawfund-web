@@ -50,10 +50,10 @@ import { LoginApi } from '../data-access/model/login-api.model';
             nzMode="horizontal"
             class=" tw-bg-orange-500 tw-text-center"
           >
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-serif">
+            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-bold">
               Trang Chủ
             </li>
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-serif">
+            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-bold">
               Thông Tin
             </li>
           </ul>

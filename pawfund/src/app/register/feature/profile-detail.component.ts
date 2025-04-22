@@ -1,91 +1,42 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { RouterLink } from '@angular/router';
-import { AccountStore } from '../data-access/store/account.store';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { ProfileStore } from '../data-access/store/profile.store';
 import { provideComponentStore } from '@ngrx/component-store';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { CommonModule } from '@angular/common';
 import { OnlyNumberInputDirective } from 'src/share/ui/directive/only-number-input.directive';
-import { AccountAddApi } from '../data-access/model/account-api.model';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { ProfileUpdateApi } from '../data-access/model/profile-api.model';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-profile',
   standalone: true,
   imports: [
     CommonModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzImageModule,
     NzGridModule,
-    NzButtonModule,
-    NzIconModule,
-    NzFormModule,
+    NzUploadModule,
+    NzImageModule,
+    NzMenuModule,
     NzInputModule,
-    NzDatePickerModule,
-    RouterLink,
+    NzButtonModule,
+    NzFormModule,
     ReactiveFormsModule,
     NzSelectModule,
     OnlyNumberInputDirective,
+    NzDatePickerModule,
   ],
-  providers: [provideComponentStore(AccountStore)],
+  providers: [provideComponentStore(ProfileStore), NzModalService],
   template: `
-    <nz-layout
-      class="tw-h-screen tw-bg-cover tw-bg-center tw-bg-[url('assets/icon/layout.png')]"
-    >
-      <nz-header class="tw-bg-orange-500 tw-h-[100px] " nz-row>
-        <div nz-col nzSpan="6" class="logo ">
-          <img
-            nz-image
-            nzSrc="assets/icon/logo_2.png"
-            width="400px"
-            height="100px"
-          />
-        </div>
-        <div nz-col nzSpan="16">
-          <ul
-            nz-menu
-            nzMode="horizontal"
-            class=" tw-bg-orange-500 tw-text-center"
-          >
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-bold">
-              Trang Chủ
-            </li>
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-bold">
-              Thông Tin
-            </li>
-          </ul>
-        </div>
-        <div nz-col nzSpan="2" class="tw-flex">
-          <button
-            nz-button
-            nzType="primary"
-            class=" tw-h-[50px] tw-mt-6 tw-rounded-full"
-            [routerLink]="['/login']"
-            routerLinkActive="router-link-active"
-          >
-            Đăng Nhập
-          </button>
-          <!-- <button
-            nz-button
-            nzType="primary"
-            class=" tw-h-[50px] tw-mt-6 tw-rounded-full tw-ml-2"
-          >
-            Đăng ký
-          </button> -->
-        </div>
-      </nz-header>
-      <nz-content>
         <div nz-row>
-          <div nz-col nzSpan="14" nzOffset="10" class="tw-mt-[100px]">
+          <div nz-col nzSpan="18" nzOffset="4" class="tw-mt-[100px]">
             <form nz-form [formGroup]="form">
               <div nz-row>
                 <!-- Họ và tên đệm -->
@@ -304,178 +255,42 @@ import { AccountAddApi } from '../data-access/model/account-api.model';
                     </nz-select>
                   </nz-form-control>
                 </nz-form-item>
-
-                <!-- mật khẩu -->
-
-                <nz-form-item nz-col nzSpan="12">
-                  <nz-form-label
-                    [nzSm]="12"
-                    [nzXs]="24"
-                    nzRequired
-                    nzFor="email"
-                    class="tw-font-bold tw-text-xl"
-                    >Mật khẩu</nz-form-label
-                  >
-                  <nz-form-control nzErrorTip="Please input your email!">
-                    <nz-input-group [nzSuffixIcon]="'lock'" class=" tw-w-[70%]">
-                      <input
-                        type="password"
-                        [formControl]="form.controls.password"
-                        nz-input
-                        placeholder="*******"
-                      />
-                    </nz-input-group>
-                  </nz-form-control>
-                </nz-form-item>
-
-                <nz-form-item nz-col nzSpan="12">
-                  <nz-form-label
-                    [nzSm]="12"
-                    [nzXs]="24"
-                    nzRequired
-                    nzFor="email"
-                    class="tw-font-bold tw-text-xl"
-                    >Nhập lại mật khẩu</nz-form-label
-                  >
-                  <nz-form-control [nzErrorTip]="rePassErrorTpl">
-                    <nz-input-group [nzSuffixIcon]="'lock'" class=" tw-w-[70%]">
-                      <input
-                        type="password"
-                        [formControl]="form.controls.rePassword"
-                        nz-input
-                        placeholder="********"
-                      />
-                    </nz-input-group>
-                    <ng-template #rePassErrorTpl let-control>
-                      <ng-container *ngIf="control.hasError('trimRequired')"
-                        >Vui lòng nhập lại mật khẩu</ng-container
-                      >
-                      <ng-container *ngIf="control.hasError('passwordMisMatch')"
-                        >Mật khẩu không khớp
-                      </ng-container>
-                    </ng-template>
-                  </nz-form-control>
-                </nz-form-item>
               </div>
             </form>
-            <button
-              nz-col
-              nzSpan="14"
-              nzOffset="9"
-              nz-button
-              class="login-form-button login-form-margin tw-rounded-full"
-              [nzType]="'primary'"
-              (click)="signUp()"
-              [disabled]="form.invalid"
-            >
-              Đăng ký
-            </button>
+            <div class="tw-mt-7 tw-text-center">
+              <button
+                nz-button
+                class="tw-mr-[120px]"
+                nzType="primary"
+                [disabled]="form.invalid"
+                (click)="onUpdate()"
+              >
+                Cập Nhật
+              </button>
+            </div>
           </div>
         </div>
-      </nz-content>
-      <nz-footer class="tw-bg-orange-500 tw-h-[230px] " nz-row>
-        <div nz-col nzSpan="6" class="logo ">
-          <img
-            nz-image
-            nzSrc="assets/icon/logo_2.png"
-            width="400px"
-            height="100px"
-          />
-          <p class="tw-text-center tw-text-[20px]">Nền tảng hỗ trợ nhận nuôi</p>
-          <p class="tw-text-center tw-text-[30px] ">và gây quỹ cho thú cưng</p>
-        </div>
-        <div nz-col nzSpan="6" class="tw-text-center">
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="facebook"
-              nzTheme="fill"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="twitter"
-              nzTheme="outline"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="instagram"
-              nzTheme="fill"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="wechat"
-              nzTheme="fill"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
-        </div>
-        <div nz-col nzSpan="6">
-          <p class="tw-text-[40px] tw-font-bold">Trung tâm cứu trợ</p>
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Đăng kí</a><br />
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Hướng dẫn</a>
-        </div>
-        <div nz-col nzSpan="6">
-          <p class="tw-text-[40px] tw-font-bold">Nền tảng</p>
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black"
-            >Liên hệ chúng tôi</a
-          ><br />
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Chính sách</a
-          ><br />
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Bảo mật</a>
-        </div>
-      </nz-footer>
-    </nz-layout>
   `,
-  styles: [
-    `
-      .logo {
-        width: 120px;
-        height: 31px;
-        float: left;
-      }
-
-      [nz-menu] {
-        line-height: 100px;
-      }
-    `,
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent {
-  constructor(public aStore: AccountStore) {}
-  form = this.aStore.form;
+export class ProfileDetailComponent {
+  constructor(public pStore: ProfileStore, private _nzModalSvc: NzModalService) {}
+
+  form = this.pStore.form;
   today = new Date();
 
   disableUnder18 = (current: Date): boolean => {
     if (!current) return false;
-    const minDate = new Date(this.today.getFullYear() - 18, this.today.getMonth(), this.today.getDate() + 1);
+    const minDate = new Date(
+      this.today.getFullYear() - 18,
+      this.today.getMonth(),
+      this.today.getDate() + 1
+    );
     return current >= minDate; // Chặn ngày sinh dưới 18 tuổi
   };
 
-  signUp() {
-    if (this.form.controls.genderCode.value === 'MALE') {
-      this.form.controls.genderName.setValue('Nam');
-    } else this.form.controls.genderName.setValue('Nữ');
-
-    if (
-      this.form.controls.password.value !== this.form.controls.rePassword.value
-    )
-      this.form.controls.rePassword.setErrors({ passwordMisMatch: true });
-    else {
-      this.aStore.createAccount({model: AccountAddApi.mapModel(this.form)})
-    }
+  onUpdate() {
+    this.pStore.updateProfile({ model: ProfileUpdateApi.mapModel(this.form) });
   }
 }

@@ -29,6 +29,6 @@ export class LoginApiService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    return throwError(error.error['errorMsg']);
+    return throwError(error.error['data']);
   }
 }

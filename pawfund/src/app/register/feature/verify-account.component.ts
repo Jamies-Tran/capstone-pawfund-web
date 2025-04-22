@@ -56,10 +56,10 @@ import { BehaviorSubject, interval, map, take } from 'rxjs';
             nzMode="horizontal"
             class=" tw-bg-orange-500 tw-text-center"
           >
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-serif">
+            <li nz-menu-item class="tw-text-white tw-text-[40px] ">
               Trang Chủ
             </li>
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-serif">
+            <li nz-menu-item class="tw-text-white tw-text-[40px] ">
               Thông Tin
             </li>
           </ul>
