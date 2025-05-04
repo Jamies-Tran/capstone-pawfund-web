@@ -35,30 +35,35 @@ import { LoginApi } from '../data-access/model/login-api.model';
     <nz-layout
       class="tw-h-screen tw-bg-cover tw-bg-center tw-bg-[url('assets/icon/layout.png')]"
     >
-      <nz-header class="tw-bg-orange-500 tw-h-[100px] " nz-row>
+      <nz-header
+        class="tw-bg-[url('assets/icon/bg-90.png')]  tw-h-[84px] tw-bg-cover tw-bg-no-repeat tw-w-full"
+        nz-row
+      >
         <div nz-col nzSpan="6" class="logo ">
           <img
             nz-image
             nzSrc="assets/icon/logo_2.png"
-            width="400px"
-            height="100px"
+            width="270px"
+            height="80px"
           />
         </div>
-        <div nz-col nzSpan="16">
-          <ul
+        <div nz-col nzSpan="12">
+          <!--  
+        <ul
             nz-menu
             nzMode="horizontal"
-            class=" tw-bg-orange-500 tw-text-center"
+            class=" tw-bg-transparent tw-text-center"
           >
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-bold">
+            <li nz-menu-item class="tw-text-white tw-text-[20px] tw-font-bold">
               Trang Chủ
             </li>
-            <li nz-menu-item class="tw-text-white tw-text-[40px] tw-font-bold">
+            <li nz-menu-item class="tw-text-white tw-text-[20px] tw-font-bold">
               Thông Tin
             </li>
           </ul>
+          -->
         </div>
-        <div nz-col nzSpan="2" class="tw-flex">
+        <div nz-col nzSpan="6" class="tw-flex tw-items-center tw-justify-end">
           <!-- <button
             nz-button
             nzType="primary"
@@ -71,7 +76,7 @@ import { LoginApi } from '../data-access/model/login-api.model';
           <button
             nz-button
             nzType="primary"
-            class=" tw-h-[50px] tw-mt-6 tw-rounded-full tw-ml-2"
+            class="orange-button tw-h-[50px]  tw-rounded-xl tw-ml-auto"
             [routerLink]="['/register']"
             routerLinkActive="router-link-active"
           >
@@ -79,9 +84,20 @@ import { LoginApi } from '../data-access/model/login-api.model';
           </button>
         </div>
       </nz-header>
-      <nz-content>
+
+      <!-- Content -->
+      <nz-content class="tw-min-h-[calc(100vh-84px)]">
         <div nz-row>
-          <div nz-col nzSpan="12" nzOffset="12" class="tw-mt-[100px]">
+          <div nz-col nzSpan="14" nzOffset="10" class="tw-mt-[100px]">
+            <h1
+              nz-col
+              nzSpan="14"
+              nzOffset=""
+              class="tw-text-3xl tw-font-bold tw-mb-6"
+              style="color: #F36439;"
+            >
+              Đăng Nhập
+            </h1>
             <form nz-form class="" [formGroup]="form">
               <nz-form-item nz-col nzSpan="12">
                 <nz-form-label
@@ -144,7 +160,7 @@ import { LoginApi } from '../data-access/model/login-api.model';
 
             <button
               nz-button
-              class="login-form-button login-form-margin tw-rounded-full tw-ml-[50px]"
+              class="orange-button login-form-button login-form-margin tw-rounded-full tw-ml-[50px] disabled:tw-bg-gray-400 disabled:tw-border-none disabled:tw-cursor-not-allowed"
               [nzType]="'primary'"
               (click)="login()"
               (keypress.enter)="login()"
@@ -161,68 +177,162 @@ import { LoginApi } from '../data-access/model/login-api.model';
           </div>
         </div>
       </nz-content>
-      <nz-footer class="tw-bg-orange-500 tw-h-[230px] " nz-row>
-        <div nz-col nzSpan="6" class="logo ">
+      <!-- Footer -->
+      <nz-footer class="tw-bg-orange-500  tw-flex tw-flex-wrap" nz-row>
+        <div nz-col nzSpan="10" class="logo tw-pb-2">
           <img
             nz-image
             nzSrc="assets/icon/logo_2.png"
-            width="400px"
+            width="360px"
             height="100px"
           />
-          <p class="tw-text-center tw-text-[20px]">Nền tảng hỗ trợ nhận nuôi</p>
-          <p class="tw-text-center tw-text-[30px] ">và gây quỹ cho thú cưng</p>
+          <p
+            class="tw-w-[400px] tw-text-left tw-text-[20px] tw-break-words tw-text-white"
+          >
+            Nền tảng hỗ trợ nhận nuôi và gây quỹ cho thú cưng
+          </p>
+          <p
+            class="tw-w-[400px] tw-text-left tw-text-[26px] tw-break-words tw-text-white tw-mb-[10px]"
+          >
+            Liên hệ
+          </p>
+          <div class="tw-text-white tw-space-y-2 tw-mb-[1rem]">
+            <!-- Phone -->
+            <div class="tw-flex tw-items-center tw-space-x-2 ">
+              <span
+                nz-icon
+                nzType="phone"
+                nzTheme="outline"
+                class="tw-text-xl"
+              ></span>
+              <span>+84929526624</span>
+            </div>
+
+            <!-- Email -->
+            <div class="tw-flex tw-items-center tw-space-x-2 ">
+              <span
+                nz-icon
+                nzType="mail"
+                nzTheme="outline"
+                class="tw-text-xl"
+              ></span>
+              <span>admin&#64;pawfund.com</span>
+            </div>
+          </div>
+          <div class="tw-text-white tw-space-y-3">
+            <!-- Tiêu đề -->
+            <p class="tw-text-[24px] tw-font-semibold tw-mb-[10px]">
+              Mạng xã hội
+            </p>
+
+            <!-- Mô tả -->
+            <p
+              class="tw-w-[400px] tw-text-[16px] tw-text-gray-300 tw-break-words"
+            >
+              Theo dõi các mạng xã hội để có được những thông tin mới nhất
+            </p>
+
+            <!-- Các icon mạng xã hội -->
+            <div class="tw-flex tw-space-x-3">
+              <!-- Facebook -->
+              <a href="#" class="tw-text-white"
+                ><span
+                  nz-icon
+                  nzType="facebook"
+                  nzTheme="fill"
+                  style="font-size: 35px;"
+                ></span
+              ></a>
+
+              <!-- Twitter -->
+              <a href="#" class="tw-text-white"
+                ><span
+                  nz-icon
+                  nzType="twitter"
+                  nzTheme="outline"
+                  style="font-size: 35px;"
+                ></span
+              ></a>
+
+              <!-- Intagram -->
+              <a href="#" class="tw-text-white"
+                ><span
+                  nz-icon
+                  nzType="instagram"
+                  nzTheme="fill"
+                  style="font-size: 35px;"
+                ></span
+              ></a>
+
+              <!-- LinkedIn -->
+              <a href="#" class="tw-text-white"
+                ><span
+                  nz-icon
+                  nzType="wechat"
+                  nzTheme="fill"
+                  style="font-size: 35px;"
+                ></span
+              ></a>
+            </div>
+          </div>
         </div>
-        <div nz-col nzSpan="6" class="tw-text-center">
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="facebook"
-              nzTheme="fill"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="twitter"
-              nzTheme="outline"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="instagram"
-              nzTheme="fill"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
-          <a href="#"
-            ><span
-              nz-icon
-              nzType="wechat"
-              nzTheme="fill"
-              class="tw-mt-[40px]"
-              style="font-size: 35px;"
-            ></span
-          ></a>
+
+        <!-- Cột 1: Tài nguyên -->
+        <div nz-col nzSpan="7">
+          <div class="tw-h-[100px] tw-flex tw-items-center">
+            <p
+              class="tw-text-[24px] tw-font-semibold tw-text-white tw-mb-[0px]"
+            >
+              Tài nguyên
+            </p>
+          </div>
+          <a
+            href="#"
+            class="tw-mb-[6px] tw-block tw-text-white tw-text-[16px] hover:tw-underline"
+            >Blog</a
+          >
+          <a
+            href="#"
+            class="tw-mb-[6px] tw-block tw-text-white tw-text-[16px] hover:tw-underline"
+            >Câu hỏi thường gặp</a
+          >
+          <a
+            href="#"
+            class="tw-mb-[6px] tw-block tw-text-white tw-text-[16px] hover:tw-underline"
+            >Liên hệ</a
+          >
+          <a
+            href="#"
+            class="tw-mb-[6px] tw-block tw-text-white tw-text-[16px] hover:tw-underline"
+            >Điều khoản dịch vụ</a
+          >
         </div>
-        <div nz-col nzSpan="6">
-          <p class="tw-text-[40px] tw-font-bold">Trung tâm cứu trợ</p>
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Đăng kí</a><br />
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Hướng dẫn</a>
-        </div>
-        <div nz-col nzSpan="6">
-          <p class="tw-text-[40px] tw-font-bold">Nền tảng</p>
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black"
-            >Liên hệ chúng tôi</a
-          ><br />
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Chính sách</a
-          ><br />
-          <a href="#" class="tw-ml-3 tw-text-lg tw-text-black">Bảo mật</a>
+
+        <!-- Cột 2: Pháp lý -->
+        <div nz-col nzSpan="7">
+          <div class="tw-h-[100px] tw-flex tw-items-center">
+            <p
+              class="tw-text-[24px] tw-font-semibold tw-text-white tw-mb-[0px]"
+            >
+              Pháp lý
+            </p>
+          </div>
+
+          <a
+            href="#"
+            class="tw-mb-[6px] tw-block tw-text-white tw-text-[16px] hover:tw-underline"
+            >Chính sách bảo mật</a
+          >
+          <a
+            href="#"
+            class="tw-mb-[6px] tw-block tw-text-white tw-text-[16px] hover:tw-underline"
+            >Điều khoản dịch vụ</a
+          >
+          <a
+            href="#"
+            class="tw-mb-[6px] tw-block tw-text-white tw-text-[16px] hover:tw-underline"
+            >Chính sách cookie</a
+          >
         </div>
       </nz-footer>
     </nz-layout>
@@ -231,12 +341,16 @@ import { LoginApi } from '../data-access/model/login-api.model';
     `
       .logo {
         width: 120px;
-        height: 31px;
         float: left;
       }
 
       [nz-menu] {
-        line-height: 100px;
+        line-height: 80px;
+      }
+      .orange-button {
+        background-color: #f36439;
+        border-color: #f36439;
+        color: white !important;
       }
     `,
   ],
@@ -248,6 +362,6 @@ export class LoginComponent {
   form = this.lstore.form;
 
   login() {
-    this.lstore.login({model: LoginApi.mapModel(this.form)})
+    this.lstore.login({ model: LoginApi.mapModel(this.form) });
   }
 }

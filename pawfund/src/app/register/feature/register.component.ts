@@ -96,11 +96,11 @@ import { AccountAddApi } from '../data-access/model/account-api.model';
             <h1
               nz-col
               nzSpan="14"
-              nzOffset="6"
+              nzOffset="9"
               class="tw-text-3xl tw-font-bold tw-mb-6"
               style="color: #F36439;"
             >
-              Đăng Ký Trung Tâm Cứu Trợ
+              Đăng Ký
             </h1>
 
             <form nz-form [formGroup]="form">
@@ -380,7 +380,7 @@ import { AccountAddApi } from '../data-access/model/account-api.model';
               nzSpan="14"
               nzOffset="9"
               nz-button
-              class="orange-button tw-h-[50px] tw-text-white tw-font-bold tw-px-8 tw-py-2 tw-rounded-xl hover:tw-bg-orange-600 disabled:tw-opacity-50"
+              class="orange-button tw-h-[50px] tw-text-white tw-font-bold tw-px-8 tw-py-2 tw-rounded-xl hover:tw-bg-orange-600 disabled:tw-bg-gray-400 disabled:tw-border-none disabled:tw-cursor-not-allowed"
               [nzType]="'primary'"
               (click)="signUp()"
               [disabled]="form.invalid"
@@ -561,8 +561,8 @@ import { AccountAddApi } from '../data-access/model/account-api.model';
         line-height: 80px;
       }
       .orange-button {
-        background-color: #f36439 !important;
-        border-color: #f36439 !important;
+        background-color: #f36439;
+        border-color: #f36439;
         color: white !important;
       }
     `,
