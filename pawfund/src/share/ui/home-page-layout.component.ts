@@ -33,51 +33,62 @@ import { CommonApiService } from '../data-access/api/common.service';
         [nzTrigger]="null"
         class="tw-bg-orange-400"
       >
-        <div class="logo">
-          <div *ngIf="!isCollapsed">
-            <img
-              nz-image
-              [nzSrc]="
-                isCollapsed
-                  ? '../assets/icon/Logo_chua_xoa_nen.png'
-                  : '../assets/icon/Logo_chua_xoa_nen_2.png'
-              "
-              heigth="120px"
-              width="198px"
-            />
+        <ng-container *ngIf="!isCollapsed">
+          <div class="logo">
+            <div>
+              <img
+                nz-image
+                [nzSrc]="'../assets/icon/logo_2.png'"
+                heigth="120px"
+                width="198px"
+              />
+            </div>
           </div>
-        </div>
-        <ul nz-menu class="tw-bg-orange-400" nzMode="inline">
+        </ng-container>
+        <ul nz-menu class="tw-bg-orange-400 custom-sidebar" nzMode="inline">
+          <ng-container *ngIf="isCollapsed">
+            <li
+              nz-menu-item
+              nzMatchRouter
+              style="display: flex; justify-content: center; align-items: center; padding: 0;"
+            >
+              <img
+                nz-image
+                [nzSrc]="'../assets/icon/Logo_No_Brand.png'"
+                width="40"
+                height="40"
+                alt="logo"
+              />
+            </li>
+          </ng-container>
           <li nz-menu-item nzMatchRouter [routerLink]="['/homepage']">
-            <span nz-icon nzType="home"></span>
+            <span nz-icon nzType="dashboard"></span>
             <span class="tw-font-bold">Tổng quan</span>
           </li>
 
-          <!-- quản lí tài khoản -->
+          <!-- Quản lý nhân viên -->
           <li nz-menu-item nzMatchRouter [routerLink]="['/staff']">
-            <span nz-icon nzType="home"></span>
+            <span nz-icon nzType="team"></span>
             <span class="tw-font-bold">Quản lý nhân viên</span>
           </li>
 
-          <!-- quản lí chi nhánh -->
-
+          <!-- Quản lý thú cưng -->
           <li
             nz-menu-item
             nzMatchRouter
             [routerLink]="['/account-management', 'account-list']"
           >
-            <span nz-icon nzType="home"></span>
+            <span nz-icon nzType="smile"></span>
             <span class="tw-font-bold">Quản lý thú cưng</span>
           </li>
 
-          <!-- quản lí dịch vụ -->
-
+          <!-- Quản lý quỹ -->
           <li
             nz-menu-item
             nzMatchRouter
             [routerLink]="['/account-management', 'account-list']"
           >
-            <span nz-icon nzType="home"></span>
+            <span nz-icon nzType="wallet"></span>
             <span class="tw-font-bold">Quản lý quỹ</span>
           </li>
 
@@ -159,6 +170,22 @@ import { CommonApiService } from '../data-access/api/common.service';
 
       nz-footer {
         text-align: center;
+      }
+
+      .custom-sidebar.ant-menu-inline,
+      .ant-menu-vertical {
+        border-right: none !important;
+      }
+      :host ::ng-deep .custom-sidebar .ant-menu-item-selected {
+        background-color: #f97316 !important; /* tailwind orange-400 */
+        color: white !important;
+      }
+
+      :host ::ng-deep .custom-sidebar .ant-menu-item-selected .anticon {
+        color: white !important;
+      }
+      :host ::ng-deep .ant-menu-inline .ant-menu-item::after {
+        border-right: 3px solid #ee4b2b !important;
       }
     `,
   ],

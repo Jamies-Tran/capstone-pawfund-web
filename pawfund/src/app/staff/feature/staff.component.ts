@@ -10,7 +10,11 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTableModule, NzTableQueryParams } from 'ng-zorro-antd/table';
 import { provideComponentStore } from '@ngrx/component-store';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
+import {
+  FormsModule,
+  NonNullableFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { tap } from 'rxjs';
@@ -40,15 +44,19 @@ import { RxLet } from '@rx-angular/template/let';
     FormsModule,
     NzSelectModule,
   ],
-  providers: [provideComponentStore(AccountStore), NzMessageService, NzModalService],
+  providers: [
+    provideComponentStore(AccountStore),
+    NzMessageService,
+    NzModalService,
+  ],
   template: `
     <nz-breadcrumb>
       <nz-breadcrumb-item>Quản lý tài khoản</nz-breadcrumb-item>
       <nz-breadcrumb-item>Danh sách tài khoản</nz-breadcrumb-item>
     </nz-breadcrumb>
     <nz-divider></nz-divider>
-    <div nz-row>
-      <div nz-col nzSpan="22" class="">
+    <div nz-row class="tw-pr-[10px]">
+      <div nz-col nzSpan="20" class="">
         <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
           <input
             type="text"
@@ -64,11 +72,7 @@ import { RxLet } from '@rx-angular/template/let';
         </ng-template>
       </div>
       <div nz-col nzSpan="2" class="tw-text-center">
-        <button
-          nz-button
-          nzType="primary"
-          (click)="onAddAccount()"
-        >
+        <button nz-button nzType="primary" (click)="onAddAccount()">
           Tạo tài khoản
         </button>
       </div>
@@ -80,8 +84,8 @@ import { RxLet } from '@rx-angular/template/let';
             class="tw-mr-4"
             [nzData]="[]"
             [nzTotal]="0"
-            (nzPageIndex)="1"
-            (nzPageSize)="10"
+            (nzPageIndex)="(1)"
+            (nzPageSize)="(10)"
             (nzQueryParams)="onTableQueryParamsChange($event)"
             [nzShowTotal]="totalText"
             [nzLoading]="!!vm.loadingCount"
@@ -136,7 +140,11 @@ import { RxLet } from '@rx-angular/template/let';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StaffComponent {
-  constructor(public aStore: AccountStore, private _nzModalSvc: NzModalService, private _fb: NonNullableFormBuilder) {}
+  constructor(
+    public aStore: AccountStore,
+    private _nzModalSvc: NzModalService,
+    private _fb: NonNullableFormBuilder
+  ) {}
 
   vm$ = this.aStore.state$;
   role$ = localStorage.getItem('role$');
@@ -176,32 +184,31 @@ export class StaffComponent {
 
     const form = this._fb.group<AccountAddApi.RequestFormGroup>({
       firstName: this._fb.control('', trimRequired),
-            lastName: this._fb.control('', trimRequired),
-            address: this._fb.control('', Validators.required),
-            dateOfBirth: this._fb.control('', Validators.required),
-            email: this._fb.control('', [
-              trimRequired,
-              Validators.pattern(emailRegex),
-              Validators.email,
-              Validators.maxLength(50),
-            ]),
-            genderCode: this._fb.control('', Validators.required),
-            genderName: this._fb.control(''),
-            identification: this._fb.control('', [
-              trimRequired,
-              Validators.minLength(12),
-              Validators.maxLength(12),
-            ]),
-            password: this._fb.control('', trimRequired),
-            rePassword: this._fb.control('', trimRequired),
-            phone: this._fb.control('', [
-              trimRequired,
-              Validators.minLength(10),
-              Validators.maxLength(10),
-            ]),
-            medias: this._fb.control(null),
+      lastName: this._fb.control('', trimRequired),
+      address: this._fb.control('', Validators.required),
+      dateOfBirth: this._fb.control('', Validators.required),
+      email: this._fb.control('', [
+        trimRequired,
+        Validators.pattern(emailRegex),
+        Validators.email,
+        Validators.maxLength(50),
+      ]),
+      genderCode: this._fb.control('', Validators.required),
+      genderName: this._fb.control(''),
+      identification: this._fb.control('', [
+        trimRequired,
+        Validators.minLength(12),
+        Validators.maxLength(12),
+      ]),
+      password: this._fb.control('', trimRequired),
+      rePassword: this._fb.control('', trimRequired),
+      phone: this._fb.control('', [
+        trimRequired,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ]),
+      medias: this._fb.control(null),
     });
-
 
     modalRef.componentInstance!.form = form;
     // modalRef
@@ -215,5 +222,4 @@ export class StaffComponent {
     //   )
     //   .subscribe();
   }
-
 }
