@@ -189,18 +189,23 @@ import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
                 </nz-form-item>
 
                 <!-- ngày thành lập -->
-
                 <nz-form-item>
                   <nz-form-label
                     [nzSm]="6"
                     [nzXs]="24"
                     nzRequired
-                    nzFor="email"
                     class="tw-font-bold tw-text-xl"
-                    >Ngày thành lập</nz-form-label
                   >
-                  <nz-form-control nzErrorTip="Chọn ngày thành lập">
-                    <nz-date-picker></nz-date-picker>
+                    Ngày thành lập
+                  </nz-form-label>
+                  <nz-form-control
+                    [nzSm]="14"
+                    [nzXs]="24"
+                    nzErrorTip="Chọn ngày thành lập"
+                  >
+                    <div class="w-full">
+                      <nz-date-picker style=" width: 100% "></nz-date-picker>
+                    </div>
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -210,10 +215,11 @@ import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
             <div class="steps-content" *ngIf="current === 0">
               <div class="tw-pl-[10%]">
                 <!-- câu 1 -->
-                <nz-form-item>
+                <nz-form-item class="custom-label">
                   <nz-form-label
                     nzRequired
-                    class="tw-font-bold tw-text-xl"
+                    nzLabelWrap
+                    class="tw-font-bold tw-text-xl tw-pr-[10px]"
                     [nzSm]="24"
                     [nzXs]="24"
                     >1. Bạn có hợp đồng nhận nuôi để chuyển quyền chăm sóc thú
@@ -233,10 +239,11 @@ import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
 
                 <!-- câu 2 -->
 
-                <nz-form-item>
+                <nz-form-item class="custom-label">
                   <nz-form-label
                     nzRequired
-                    class="tw-font-bold tw-text-xl"
+                    nzLabelWrap
+                    class="tw-font-bold tw-text-xl tw-pr-[10px]"
                     [nzSm]="24"
                     [nzXs]="24"
                     >2. Vui lòng mô tả cách các bạn tiếp nhận thú cưng bị bỏ
@@ -254,10 +261,11 @@ import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
 
                 <!-- câu 3 -->
 
-                <nz-form-item>
+                <nz-form-item class="custom-label">
                   <nz-form-label
                     nzRequired
-                    class="tw-font-bold tw-text-xl"
+                    nzLabelWrap
+                    class="tw-font-bold tw-text-xl tw-pr-[10px]"
                     [nzSm]="24"
                     [nzXs]="24"
                     >3. Ước tính tổ chức của bạn hiện có bao nhiêu thú cưng đang
@@ -269,6 +277,27 @@ import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
                     [nzXs]="24"
                   >
                     <input class="tw-w-[70%]" type="text" nz-input />
+                  </nz-form-control>
+                </nz-form-item>
+                <!-- câu 2 -->
+
+                <nz-form-item class="custom-label">
+                  <nz-form-label
+                    nzRequired
+                    nzLabelWrap
+                    class="tw-font-bold tw-text-xl tw-pr-[10px]"
+                    [nzSm]="24"
+                    [nzXs]="24"
+                    >4. Vui lòng mô tả cách các bạn tiếp nhận thú cưng bị bỏ
+                    rơi/bị thương và các bước chăm sóc, điều trị sau khi tiếp
+                    nhận.</nz-form-label
+                  >
+                  <nz-form-control
+                    nzErrorTip="Vui lòng chọn"
+                    [nzSm]="24"
+                    [nzXs]="24"
+                  >
+                    <textarea class="tw-w-[70%]" rows="4" nz-input></textarea>
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -361,6 +390,10 @@ import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
         display: block;
         height: 32px;
         line-height: 32px;
+      }
+      .custom-label ::ng-deep .ant-form-item-required {
+        height: auto !important;
+        display: contents !important;
       }
     `,
   ],
